@@ -24,7 +24,7 @@ export class CitySearch extends Component {
         showSuggestions: false
     });
 
-    this.props.updateEvents(suggestion);
+    this.props.updateLocation(suggestion);
   }
 
   render() {
