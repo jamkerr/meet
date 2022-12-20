@@ -3,7 +3,7 @@ import axios from 'axios';
 import NProgress from 'nprogress';
 
 export const extractLocations = (events) => {
-    const extractLocations = events.map((event) => event.location);
+    let extractLocations = events.map((event) => event.location);
     let locations = [...new Set(extractLocations)];
     return locations;
 };
@@ -48,32 +48,6 @@ const removeQuery = () => {
     }
 }
 
-export const getEvents = async () => {
-
-    NProgress.start();
-
-    if (window.location.href.startsWith('http://localhost')) {
-        NProgress.done();
-        return mockData;
-    }
-
-    const token = await getAccessToken();
-
-    if (token) {
-        removeQuery();
-        const url = `https://fenld6yji5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
-        const result = await axios.get(url);
-        console.log(result);
-        if (result.data) {
-            let locations = extractLocations(result.data.events);
-            localStorage.setItem('lastEvents', JSON.stringify(result.data));
-            localStorage.setItem('locations', JSON.stringify(locations));
-        }
-        NProgress.done();
-        return result.data.events;
-    }
-}
-
 export const getAccessToken = async () => {
     const accessToken = localStorage.getItem('access_token');
 
@@ -94,4 +68,33 @@ export const getAccessToken = async () => {
     }
 
     return accessToken;
+}
+
+export const getEvents = async () => {
+
+    NProgress.start();
+
+    if (window.location.href.startsWith('http://localhost')) {
+        NProgress.done();
+        return mockData;
+    }
+
+    const token = await getAccessToken();
+
+    if (token) {
+        removeQuery();
+        const url = `https://fenld6yji5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
+        const result = await axios.get(url);
+        console.log(result.data.events);
+        console.log(result.data.items);
+        console.log(result.data.data.items);
+
+        if (result.data) {
+            let locations = extractLocations(result.data.events);
+            localStorage.setItem('lastEvents', JSON.stringify(result.data));
+            localStorage.setItem('locations', JSON.stringify(locations));
+        }
+        NProgress.done();
+        return result.data.events;
+    }
 }
