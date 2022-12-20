@@ -27,6 +27,11 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.when').text()).toBe(eventData.start.dateTime);
     });
 
+    // Test whether state is collapsed by default
+    test('default state is collapsed', () => {
+        expect(EventWrapper.state('isCollapsed')).toBe(true);
+    });
+
     // Test whether user can click to reveal extra details
     test('render event details on click', () => {
         EventWrapper.setState({
