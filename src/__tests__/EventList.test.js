@@ -8,7 +8,7 @@ import { mockData } from '../mock-data';
 
 describe('<EventList /> component', () => {
     test('render correct number of events', () => {
-        const EventListWrapper = shallow(<EventList events={mockData} />);
+        const EventListWrapper = shallow(<EventList events={mockData} eventNumber={mockData.length} />);
         expect(EventListWrapper.find(Event)).toHaveLength(mockData.length);
     });
 });

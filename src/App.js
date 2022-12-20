@@ -11,14 +11,23 @@ export class App extends Component {
 
     state = {
         events: [],
-        locations: []
+        locations: [],
+        eventNumber: 32
     }
 
-    updateEvents = (location) => {
+    updateLocation = (location) => {
         getEvents().then((events) => {
             const locationEvents = (location === 'all') ? events : events.filter((event) => event.location === location);
             this.setState({
                 events: locationEvents
+            });
+        });
+    }
+
+    updateEventNumber = (eventNumber) => {
+        getEvents().then(() => {
+            this.setState({
+                eventNumber: eventNumber
             });
         });
     }
@@ -39,9 +48,9 @@ export class App extends Component {
     render() {
         return (
             <div className="App">
-                <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-                <NumberOfEvents />
-                <EventList events={this.state.events} />
+                <CitySearch locations={this.state.locations} updateLocation={this.updateLocation} />
+                <NumberOfEvents eventNumber={this.state.eventNumber} updateEventNumber={this.updateEventNumber} />
+                <EventList events={this.state.events} eventNumber={this.state.eventNumber} />
             </div>
         );
     }
