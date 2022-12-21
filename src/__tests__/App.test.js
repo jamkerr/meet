@@ -81,4 +81,35 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
+    test('App passes "number of events" state as a prop to EventList', () => {
+        const AppEventNumberState = AppWrapper.state('eventNumber');
+        expect(AppEventNumberState).not.toEqual(undefined);
+        expect(AppWrapper.find(EventList).props().eventNumber).toEqual(AppEventNumberState);
+        AppWrapper.unmount();
+    });
+
+    test('number of events state App is equal to number of events state in NumberOfEvents', async () => {
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+        const EventListWrapper = AppWrapper.find(EventList);
+        const testNumber = 12;
+        NumberOfEventsWrapper.find('.EventNumberInput').simulate('change', {
+            target: { value: testNumber },
+        });
+        await getEvents();
+        expect(AppWrapper.state('eventNumber')).toBe(testNumber);
+        expect(NumberOfEventsWrapper.state('eventNumber')).toBe(testNumber);
+        expect(EventListWrapper.find('.event-list li')).toHaveLength(testNumber);
+        AppWrapper.unmount();
+    });
+
+    test('events shown in EventList should match mock data', async () => {
+        const EventListWrapper = AppWrapper.find(EventList);
+        await getEvents();
+        for (let i = 0; i < mockData.length; i += 1) {
+            expect(EventListWrapper.find('.event-list li').at(i).text()).toBe(mockData[i]);
+        }
+        expect(AppWrapper.state('events')).toEqual(mockData);
+        AppWrapper.unmount();
+    })
+
 });
