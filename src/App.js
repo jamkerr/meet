@@ -47,7 +47,7 @@ export class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App bg-zinc-400 min-h-screen flex items-center flex-col py-10">
                 <CitySearch locations={this.state.locations} updateLocation={this.updateLocation} />
                 <NumberOfEvents eventNumber={this.state.eventNumber} updateEventNumber={this.updateEventNumber} />
                 <EventList events={this.state.events} eventNumber={this.state.eventNumber} />

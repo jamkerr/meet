@@ -20,11 +20,11 @@ export class Event extends Component {
                 <div className='when'>{event.start.dateTime}</div>
 
                 {!isCollapsed && (
-                    <div className='description'>{event.description}</div>
+                    <div className='description border-solid border-4 border-white rounded p-2'>{event.description}</div>
                 )}
 
                 <button
-                    className='toggle-details'
+                    className='toggle-details bg-white p-2 w-full rounded'
                     onClick={() => this.toggleDetails()}
                 >{isCollapsed ? 'Show Details' : 'Hide Details'}</button>
             </div>

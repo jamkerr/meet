@@ -29,7 +29,7 @@ export class CitySearch extends Component {
 
   render() {
     return (
-      <div className="CitySearch">
+      <div className="CitySearch w-full flex flex-col items-center m-3">
         <input
           type="text"
           className="city"

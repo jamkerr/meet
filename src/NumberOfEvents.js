@@ -17,13 +17,13 @@ export class NumberOfEvents extends Component {
 
     render() {
         return (
-            <div className="NumberOfEvents">
-            <input
-                type="number"
-                className="EventNumberInput"
-                value={this.state.eventNumber}
-                onChange={this.handleInputChanged}
-            />
+            <div className="NumberOfEvents w-full flex flex-col items-center m-3">
+                <input
+                    type="number"
+                    className="EventNumberInput"
+                    value={this.state.eventNumber}
+                    onChange={this.handleInputChanged}
+                />
             </div>
         );
     }
