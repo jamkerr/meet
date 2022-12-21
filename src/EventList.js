@@ -4,8 +4,8 @@ import { Event } from "./Event";
 export function EventList(props) {
     const { events, eventNumber } = props;
     return (
-        <ul className='EventList'>
-            {(eventNumber ? events.slice(0, eventNumber) : events.slice(events.length)).map(event =>
+        <ul className='event-list'>
+            {(eventNumber ? events.slice(0, eventNumber) : events).map(event =>
                 <li key={event.id}>
                     <Event event={event} />
                 </li>
