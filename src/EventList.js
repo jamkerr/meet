@@ -5,7 +5,7 @@ export function EventList(props) {
     const { events, eventNumber } = props;
     return (
         <ul className='EventList'>
-            {events.slice(eventNumber ? -eventNumber : events.length).map(event =>
+            {(eventNumber ? events.slice(0, eventNumber) : events.slice(events.length)).map(event =>
                 <li key={event.id}>
                     <Event event={event} />
                 </li>
