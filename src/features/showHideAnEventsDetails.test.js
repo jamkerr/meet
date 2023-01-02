@@ -1,7 +1,6 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { App } from '../App';
+import { shallow } from 'enzyme';
 import { Event } from '../Event';
 import { mockData } from '../mock-data';
 
@@ -14,7 +13,7 @@ defineFeature(feature, test => {
 
         let EventWrapper;
         given('an event\'s info has been loaded', () => {
-            EventWrapper = mount(<Event event={mockData[0]} />);
+            EventWrapper = shallow(<Event event={mockData[0]} />);
         });
 
         when('a user first sees an event', () => {
@@ -29,7 +28,7 @@ defineFeature(feature, test => {
         
         let EventWrapper;
         given('an event\'s info has been loaded', () => {
-            EventWrapper = mount(<Event event={mockData[0]} />);
+            EventWrapper = shallow(<Event event={mockData[0]} />);
         });
 
         when('a user clicks a collapsed event panel', () => {
@@ -45,7 +44,7 @@ defineFeature(feature, test => {
 
         let EventWrapper;
         given('an event\'s details are visible', () => {
-            EventWrapper = mount(<Event event={mockData[0]} />);
+            EventWrapper = shallow(<Event event={mockData[0]} />);
             EventWrapper.find('.toggle-details').simulate('click');
         });
 
