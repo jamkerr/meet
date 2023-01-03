@@ -80,11 +80,11 @@ describe('filter events by city', () => {
         expect(suggestionList).toBeDefined();
     });
 
-    // This test currently fails
     test('User can select a city from the suggested list', async () => {
         await page.click('.suggestions li');
         const eventLocation = await page.$('.event .location');
-        expect(eventLocation).stringContaining('Berlin');
+        const locationText = await page.evaluate(element => element.textContent, eventLocation);
+        expect(locationText).toEqual('Berlin, Germany'); //Would be better to check whether it contains the string "Berlin", rather that requiring an exact match.
     });
 
 });
