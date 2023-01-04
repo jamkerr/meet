@@ -34,7 +34,7 @@ export class CitySearch extends Component {
         <input
           type="text"
           name="cityPicker"
-          className="city border-solid border-4 border-pink-400 rounded-xl p-2"
+          className="city font-bold dark:text-slate-700 border-solid border-4 border-pink-400 rounded-xl p-2"
           value={this.state.query}
           onChange={this.handleInputChanged}
           onFocus={() => { this.setState({ showSuggestions: true }) }}

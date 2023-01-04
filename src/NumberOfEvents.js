@@ -22,7 +22,7 @@ export class NumberOfEvents extends Component {
                 <input
                     type="number"
                     name="eventNumberPicker"
-                    className="EventNumberInput border-solid border-4 border-pink-400 rounded-xl p-2"
+                    className="EventNumberInput font-bold dark:text-slate-700 border-solid border-4 border-pink-400 rounded-xl p-2"
                     value={this.state.eventNumber}
                     onChange={this.handleInputChanged}
                 />
