@@ -29,7 +29,7 @@ export class CitySearch extends Component {
 
   render() {
     return (
-      <div className="CitySearch w-full flex flex-col items-center m-3">
+      <div className="CitySearch flex flex-col items-center m-3">
         <label htmlFor="cityPicker" className="font-bold">Pick a Place</label>
         <input
           type="text"

@@ -17,7 +17,7 @@ export class NumberOfEvents extends Component {
 
     render() {
         return (
-            <div className="NumberOfEvents w-full flex flex-col items-center m-3">
+            <div className="NumberOfEvents flex flex-col items-center m-3">
                 <label htmlFor="eventNumberPicker" className="font-bold">Number of Events</label>
                 <input
                     type="number"
