@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from "moment/moment";
 
 export class Event extends Component {
 
@@ -17,7 +18,7 @@ export class Event extends Component {
             <div className='event border-solid border-8 border-pink-400 rounded-xl p-4'>
                 <h3 className='summary font-extrabold text-xl'>{event.summary}</h3>
                 <div className='location'>{event.location}</div>
-                <div className='when mb-4'>{event.start.dateTime}</div>
+                <div className='when mb-4'>{moment(event.start.dateTime).format('MMMM Do YYYY, h:mm a')}</div>
 
                 {!isCollapsed && (
                     <div className='description border-solid border-x-4 border-t-4 border-pink-400 rounded-xl p-4'>{event.description}</div>
