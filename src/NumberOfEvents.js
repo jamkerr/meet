@@ -18,9 +18,11 @@ export class NumberOfEvents extends Component {
     render() {
         return (
             <div className="NumberOfEvents w-full flex flex-col items-center m-3">
+                <label htmlFor="eventNumberPicker" className="font-bold">Number of Events</label>
                 <input
                     type="number"
-                    className="EventNumberInput"
+                    name="eventNumberPicker"
+                    className="EventNumberInput border-solid border-4 border-pink-400 rounded-xl p-2"
                     value={this.state.eventNumber}
                     onChange={this.handleInputChanged}
                 />

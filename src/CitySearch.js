@@ -30,9 +30,11 @@ export class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch w-full flex flex-col items-center m-3">
+        <label htmlFor="cityPicker" className="font-bold">Pick a City</label>
         <input
           type="text"
-          className="city"
+          name="cityPicker"
+          className="city border-solid border-4 border-pink-400 rounded-xl p-2"
           value={this.state.query}
           onChange={this.handleInputChanged}
           onFocus={() => { this.setState({ showSuggestions: true }) }}

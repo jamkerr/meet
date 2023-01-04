@@ -14,17 +14,17 @@ export class Event extends Component {
         const { event } = this.props;
         const { isCollapsed } = this.state;
         return(
-            <div className='event'>
-                <h2 className='summary'>{event.summary}</h2>
+            <div className='event border-solid border-8 border-pink-400 rounded-xl p-4'>
+                <h3 className='summary font-extrabold text-xl'>{event.summary}</h3>
                 <div className='location'>{event.location}</div>
-                <div className='when'>{event.start.dateTime}</div>
+                <div className='when mb-4'>{event.start.dateTime}</div>
 
                 {!isCollapsed && (
-                    <div className='description border-solid border-4 border-white rounded p-2'>{event.description}</div>
+                    <div className='description border-solid border-x-4 border-t-4 border-pink-400 rounded-xl p-4'>{event.description}</div>
                 )}
 
                 <button
-                    className='toggle-details bg-white p-2 w-full rounded'
+                    className='toggle-details bg-pink-500 rounded-xl p-2 w-full font-bold text-neutral-50'
                     onClick={() => this.toggleDetails()}
                 >{isCollapsed ? 'Show Details' : 'Hide Details'}</button>
             </div>
