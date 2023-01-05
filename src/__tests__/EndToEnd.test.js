@@ -84,7 +84,7 @@ describe('filter events by city', () => {
         await page.click('.suggestions li');
         const eventLocation = await page.$('.event .location');
         const locationText = await page.evaluate(element => element.textContent, eventLocation);
-        expect(locationText).toEqual('Berlin, Germany'); //Would be better to check whether it contains the string "Berlin", rather that requiring an exact match.
+        expect(locationText).toContain('Berlin');
     });
 
 });
