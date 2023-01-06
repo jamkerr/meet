@@ -78,7 +78,7 @@ export class App extends Component {
                     }
                 </button>
                 <h1 className='text-6xl font-extrabold m-4'>Meet</h1>
-                <div className='w-full flex flex-wrap flex-row justify-center m-4'>
+                <div className='w-full flex flex-wrap flex-row justify-center m-4 space-x-14'>
                     <CitySearch locations={this.state.locations} updateLocation={this.updateLocation} />
                     <NumberOfEvents eventNumber={this.state.eventNumber} updateEventNumber={this.updateEventNumber} />
                 </div>

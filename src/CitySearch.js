@@ -16,7 +16,8 @@ export class CitySearch extends Component {
     if (suggestions.length === 0) {
       this.setState({
         query: value,
-        infoText: 'We can\'t find the city you\'re looking for. Please try another city.',
+        suggestions: [],
+        infoText: 'No city with that name',
       });
     } else {
       this.setState({
@@ -40,7 +41,6 @@ export class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch flex flex-col items-center m-3">
-        <InfoAlert text={this.state.infoText} />
         <label htmlFor="cityPicker" className="font-bold">Pick a Place</label>
         <input
           type="text"
@@ -50,14 +50,17 @@ export class CitySearch extends Component {
           onChange={this.handleInputChanged}
           onFocus={() => { this.setState({ showSuggestions: true }) }}
         />
-        <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }} >
+        <ul className="suggestions bg-slate-300 dark:bg-slate-500 rounded mt-1 p-3 min-w-full max-h-30 overflow-auto" style={this.state.showSuggestions ? {} : { display: 'none' }} >
             {this.state.suggestions.map((suggestion) => (
                 <li
+                className='cursor-pointer'
                 key={suggestion}
                 onClick={() => this.handleItemClicked(suggestion)}
                 >{suggestion}</li>
             ))}
+            <InfoAlert text={this.state.infoText} />
             <li
+              className='cursor-pointer'
               key='all'
               onClick={() => this.handleItemClicked('all')}
             >

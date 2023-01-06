@@ -11,7 +11,7 @@ export class NumberOfEvents extends Component {
         const value = parseInt(event.target.value);
         if (value < 1 || value > 250) {
             this.setState({
-                errorText: 'Pick a number between 1 and 250.'
+                errorText: 'Pick a number between 1 and 250'
             });
         } else {
             this.setState({
@@ -25,7 +25,6 @@ export class NumberOfEvents extends Component {
     render() {
         return (
             <div className="NumberOfEvents flex flex-col items-center m-3">
-                <ErrorAlert text={this.state.errorText} />
                 <label htmlFor="eventNumberPicker" className="font-bold">Number of Events</label>
                 <input
                     type="number"
@@ -34,6 +33,7 @@ export class NumberOfEvents extends Component {
                     value={this.state.eventNumber}
                     onChange={this.handleInputChanged}
                 />
+                <ErrorAlert text={this.state.errorText} />
             </div>
         );
     }
