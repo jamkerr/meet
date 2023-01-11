@@ -73,8 +73,17 @@ export const getEvents = async () => {
         return mockData;
     }
 
+    // If offline, get events from local storage
+    if (!navigator.onLine) {
+        const data = localStorage.getItem('lastEvents');
+        NProgress.done();
+        return data ? JSON.parse(data).items : [];
+    }
+
+    // If online, get access token
     const token = await getAccessToken();
 
+    // If there's a token, get the events from the API
     if (token) {
         removeQuery();
         const url = `https://fenld6yji5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
