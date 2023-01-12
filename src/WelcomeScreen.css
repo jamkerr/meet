@@ -1,0 +1,25 @@
+
+.header-app-name {
+    color: #f472b6;
+    /* text-shadow:
+            -1px -1px 0 #f472b6,
+            1px -1px 0 #f472b6,
+            -1px 1px 0 #f472b6,
+            1px 1px 0 #f472b6; */
+}
+
+ .google-button {
+    background-color: #4285f4;
+}
+
+.google-button:hover {
+    box-shadow: 0 0 6px #4285f4;
+}
+
+.google-button:active {
+    background: #1669f2;
+}
+
+.btn-text {
+    background-color: #4285f4;
+}
