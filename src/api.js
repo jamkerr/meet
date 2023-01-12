@@ -18,7 +18,7 @@ const getToken = async (code) => {
     }
 }
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
     const result = await fetch(
         `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
@@ -68,6 +68,7 @@ export const getEvents = async () => {
 
     NProgress.start();
 
+    // If running locally, use mock data
     if (window.location.href.indexOf('localhost') > -1) {
         NProgress.done();
         return mockData;
