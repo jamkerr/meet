@@ -22,7 +22,7 @@ function WelcomeScreen(props) {
                 </button>
             </div>
             <a
-                href="https://jamkerr.github.io/meet-again/privacy.html"
+                href="https://jamkerr.github.io/meet/privacy.html"
                 rel="nofollow noopener"
                 >
                 Privacy policy
