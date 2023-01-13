@@ -78,7 +78,7 @@ export const getEvents = async () => {
     if (!navigator.onLine) {
         const data = localStorage.getItem('lastEvents');
         NProgress.done();
-        return data ? JSON.parse(data).events : [];
+        return data ? JSON.parse(data) : [];
     }
 
     // If online, get access token
@@ -90,9 +90,9 @@ export const getEvents = async () => {
         const url = `https://fenld6yji5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
         const result = await axios.get(url);
 
-        if (result) {
+        if (result.events) {
             let locations = extractLocations(result.events);
-            localStorage.setItem('lastEvents', JSON.stringify(result));
+            localStorage.setItem('lastEvents', JSON.stringify(result.events));
             localStorage.setItem('locations', JSON.stringify(locations));
         }
         NProgress.done();
