@@ -90,13 +90,13 @@ export const getEvents = async () => {
         const url = `https://fenld6yji5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
         const result = await axios.get(url);
 
-        if (result.events.data) {
-            let locations = extractLocations(result.data.events);
-            localStorage.setItem('lastEvents', JSON.stringify(result.data.events));
+        if (result) {
+            let locations = extractLocations(result.events);
+            localStorage.setItem('lastEvents', JSON.stringify(result.events));
             localStorage.setItem('locations', JSON.stringify(locations));
         }
         NProgress.done();
-        return result.data.events;
+        return result.events;
     }
 }
 
