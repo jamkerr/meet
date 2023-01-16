@@ -51,13 +51,23 @@ export class App extends Component {
     async componentDidMount() {
 
         this.mounted = true;
+
+        // Retrieve access token from local storage
         const accessToken = localStorage.getItem('access_token');
-        const isTokenValid = (await accessToken || checkToken(accessToken)).error ? false : true;
+
+        // If the access token doesn't exist, or there's an error when checking the token, then token is not valid. Otherwise it is valid.
+        const tokenCheck = accessToken && (await checkToken(accessToken));
+        const isTokenValid = (!accessToken || tokenCheck.error) ? false : true;
+
         const searchParams = new URLSearchParams(window.location.search);
         const code = searchParams.get('code');
-        this.setState({ showWelcomeScreen: !(code || isTokenValid) });
 
-        if ((code || isTokenValid) && this.mounted) {
+        // If code exists, or if token is valid, user is authorized
+        const authorized = (code || isTokenValid);
+        // If code exists, or if token is valid, set state of showWelcomeScreen to true. Otherwise, set it to false.
+        this.setState({ showWelcomeScreen: !authorized });
+
+        if (authorized && this.mounted) {
             getEvents().then((events) => {
                 if (this.mounted) {
                     this.setState({ events, locations: extractLocations(events) });
@@ -71,8 +81,10 @@ export class App extends Component {
     }
 
     render() {
-        const { darkMode } = this.state;
-        // if (this.state.showWelcomeScreen === undefined) return <div className='App' />
+        const { events, showWelcomeScreen, darkMode } = this.state;
+
+        if (showWelcomeScreen === undefined) return <div className='App' />
+
         return (
             <div className='App bg-slate-50 dark:bg-slate-700 dark:text-neutral-50 min-h-screen flex items-center flex-col py-10'>
                 <button
@@ -94,8 +106,8 @@ export class App extends Component {
                     <CitySearch locations={this.state.locations} updateLocation={this.updateLocation} />
                     <NumberOfEvents eventNumber={this.state.eventNumber} updateEventNumber={this.updateEventNumber} />
                 </div>
-                <EventList events={this.state.events} eventNumber={this.state.eventNumber} />
-                {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
+                <EventList events={events} eventNumber={this.state.eventNumber} />
+                <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
             </div>
         );
     }
