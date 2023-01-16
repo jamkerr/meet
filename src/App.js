@@ -8,6 +8,7 @@ import { NumberOfEvents } from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import EventGenre from './EventGenre';
 
 export class App extends Component {
 
@@ -97,7 +98,7 @@ export class App extends Component {
     }
 
     render() {
-        const { events, showWelcomeScreen, darkMode } = this.state;
+        const { events, eventNumber, locations, showWelcomeScreen, darkMode } = this.state;
 
         if (showWelcomeScreen === undefined) return <div className='App' />
 
@@ -119,10 +120,11 @@ export class App extends Component {
                 </button>
                 <h1 className='text-6xl font-extrabold m-4'>Meet Again</h1>
                 <div className='w-full flex flex-wrap flex-row justify-center m-4'>
-                    <CitySearch locations={this.state.locations} updateLocation={this.updateLocation} />
-                    <NumberOfEvents eventNumber={this.state.eventNumber} updateEventNumber={this.updateEventNumber} />
+                    <CitySearch locations={locations} updateLocation={this.updateLocation} />
+                    <NumberOfEvents eventNumber={eventNumber} updateEventNumber={this.updateEventNumber} />
                 </div>
-                <ResponsiveContainer height={400} >
+                <EventGenre events={events} />
+                <ResponsiveContainer height={400}>
                     <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis type="category" dataKey="city" name="city" />
@@ -131,7 +133,7 @@ export class App extends Component {
                         <Tooltip />
                     </ScatterChart>
                 </ResponsiveContainer>
-                <EventList events={events} eventNumber={this.state.eventNumber} />
+                <EventList events={events} eventNumber={eventNumber} />
                 <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
             </div>
         );
