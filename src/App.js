@@ -23,7 +23,7 @@ export class App extends Component {
         const {locations, events} = this.state;
         const data = locations.map((location) => {
             const number = events.filter((event) => event.location === location).length;
-            const city = location.split(',').shift();
+            const city = location.split(/,|-/).shift();
             return {city, number};
         });
         return data;
