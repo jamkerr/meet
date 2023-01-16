@@ -88,15 +88,34 @@ export const getEvents = async () => {
     if (token) {
         removeQuery();
         const url = `https://fenld6yji5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
-        const result = await axios.get(url);
+        
+        try {
+            // Make API call to get event data
+            const response = await axios.get(url);
 
-        if (result) {
-            let locations = extractLocations(result.events);
-            localStorage.setItem('lastEvents', JSON.stringify(result.events));
+            // Save event response to variable
+            let events = await response.data.events;
+
+            // alert(JSON.stringify(events));
+            console.log(events);
+
+            // Save events to local storage for use when offline
+            localStorage.setItem('lastEvents', JSON.stringify(events));
+
+            // Extract and save location data from events
+            let locations = extractLocations(events);
             localStorage.setItem('locations', JSON.stringify(locations));
+
+            // Stop progress spinner
+            NProgress.done();
+
+            // Return event data
+            return events;
+
+        } catch (error) {
+            NProgress.done();
+            console.error(error.response);
         }
-        NProgress.done();
-        return result.events;
     }
 }
 

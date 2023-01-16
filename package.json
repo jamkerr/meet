@@ -1,6 +1,6 @@
 {
   "name": "meet",
-  "version": "0.1.0",
+  "version": "0.1.14",
   "private": true,
   "homepage": "https://jamkerr.github.io/meet",
   "dependencies": {
