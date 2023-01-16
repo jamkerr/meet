@@ -60,7 +60,6 @@ export class App extends Component {
         if ((code || isTokenValid) && this.mounted) {
             getEvents().then((events) => {
                 if (this.mounted) {
-                    alert(JSON.stringify(events));
                     this.setState({ events, locations: extractLocations(events) });
                 }
             });

@@ -96,9 +96,6 @@ export const getEvents = async () => {
             // Save event response to variable
             let events = await response.data.events;
 
-            // alert(JSON.stringify(events));
-            console.log(events);
-
             // Save events to local storage for use when offline
             localStorage.setItem('lastEvents', JSON.stringify(events));
 
