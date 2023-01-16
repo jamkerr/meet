@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
 
 const EventGenre = ({events}) => {
 
     // Hook for setting state of event genre data
     const [eventGenreData, setEventGenreData] = useState([]);
+
+    const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#fd768c'];
 
     useEffect(() => {
         const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
@@ -29,8 +31,14 @@ const EventGenre = ({events}) => {
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                ></Pie>
+                    label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                >
+                    {
+                        eventGenreData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                        ))
+                    }
+                </Pie>
             </PieChart>
         </ResponsiveContainer>
     )
