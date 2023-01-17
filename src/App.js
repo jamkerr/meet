@@ -17,7 +17,8 @@ export class App extends Component {
         locations: [],
         eventNumber: 32,
         darkMode: false,
-        showWelcomeScreen: undefined
+        showWelcomeScreen: undefined,
+        isDataLoaded: false,
     }
 
     getData = () => {
@@ -87,7 +88,7 @@ export class App extends Component {
         if ((authorized || isLocal) && this.mounted) {
             getEvents().then((events) => {
                 if (this.mounted) {
-                    this.setState({ events, locations: extractLocations(events) });
+                    this.setState({ events, locations: extractLocations(events), isDataLoaded: true });
                 }
             });
         }
@@ -98,7 +99,7 @@ export class App extends Component {
     }
 
     render() {
-        const { events, eventNumber, locations, showWelcomeScreen, darkMode } = this.state;
+        const { events, eventNumber, locations, showWelcomeScreen, darkMode, isDataLoaded } = this.state;
 
         if (showWelcomeScreen === undefined) return <div className='App' />
 
@@ -133,7 +134,12 @@ export class App extends Component {
                         <Tooltip />
                     </ScatterChart>
                 </ResponsiveContainer>
-                <EventList events={events} eventNumber={eventNumber} />
+                {(!isDataLoaded)
+                // If event data isn't loaded, show spinner
+                ? <div className='border-solid border-8 border-slate-200 border-t-pink-400 rounded-full animate-spin w-16 h-16'></div>
+                // If event data is loaded, show event list
+                : <EventList events={events} eventNumber={eventNumber} />
+                }
                 <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
             </div>
         );
