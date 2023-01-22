@@ -9,10 +9,10 @@ const EventGenre = ({events}) => {
     const colors = ['#E91E63', '#BB36D1', '#8258D1', '#57ACDC', '#57DCBE'];
 
     useEffect(() => {
-        const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+        const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
         const getData = () => {
             const data = genres.map((genre)=>{
-                const value = events.filter(event => event.summary.split(' ').includes(genre)).length;
+                const value = events.filter(event => event.summary.includes(genre)).length;
                 return { name: genre, value };
             })
             return data;
