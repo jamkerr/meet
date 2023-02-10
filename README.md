@@ -4,9 +4,14 @@ Meet Again is a proof-of-concept progressive web app that lets you search for te
 
 It's currently connected to a demo Google Calendar for demonstration purposes, so the events aren't up-to-date. But because it uses the Google Calendar API, in principle it could connect to a live events calendar.
 
+## Screenshots
+
+![A screenshot of the title and empty inputs, and the pie chart](./public/screenshots/screenshot-title-inputs-and-pie-chart.png)
+![A screenshot of six events, with the details expanded on one of them](./public/screenshots/screenshot-events-one-details.png)
+
 ## Access
 
-The live app - which you can find at https://jamkerr.github.io/meet/ - is currently in "testing" and hasn't been verified by Google, so just get in touch if you'd like access and I can add you as a tester. It uses Google OAuth2 for authentication, so you do need a Google account.
+The [live app](https://jamkerr.github.io/meet/) is currently in "testing" and hasn't been verified by Google, so just get in touch if you'd like access and I can add you as a tester. It uses Google OAuth2 for authentication, so you do need a Google account.
 
 As a progressive web app, it can be installed natively on any device.
 
